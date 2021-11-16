@@ -1,0 +1,20 @@
+@use 'variables' as *;
+@use 'sass:math';
+
+
+.main-buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh - $footer-height - $header-height;
+}
+
+.main-scr-btn {
+    width: 100%;
+    height: math.floor(math.div(100vh - $footer-height - $header-height, 12) * 3);
+}
+
+.main-scr-footer {
+    background-color: black;
+}

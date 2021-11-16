@@ -1,0 +1,47 @@
+@use 'variables' as *;
+
+$base-color: #c6538c;
+
+.categories {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.category {
+    position: relative;
+    background-color: $base-color;
+    height: 100px;
+    width: 100%;
+    div {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: $header-height;
+        line-height: $header-height;
+    }
+    .cat-score {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: $base-color;
+        width: 20px;
+        height: 10px;
+
+    }
+}
+
+.cat-p {
+    color: green;
+}
+
+.cat-i {
+    color: pink;
+}
+
+.cat01 {
+    font: 'Roboto';
+    color: orange;
+}
+

@@ -1,0 +1,72 @@
+@use 'variables' as *;
+
+html {
+    font-size: 16px;
+}
+
+body {
+
+    background-color: $bgr-color;
+    font-family: 'Roboto', 'sans-serif';
+    font-size: 1rem;
+    color: $font-color;
+    margin: 0;
+        
+}
+
+main {
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+header {
+    margin-left: auto;
+    margin-right: auto;
+    height: $header-height;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem;
+    text-transform: capitalize;
+    line-height: $header-height;
+
+}
+
+h2 {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: $header-height;
+}
+
+.card-header {
+    font-size: 1.3rem;
+}
+
+.button-font {
+    font-size: 1.3rem;
+    text-transform: capitalize;
+}
+
+
+
+.screen-hidden {
+    display: none;
+}
+
+.screen-active {
+    display: block;
+}
+
+.popup-hidden {
+    display: none;
+}
+
+.popup-active {
+    display: block;
+}
+
+.screen {
+    height: $screen-height;
+}

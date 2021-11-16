@@ -1,0 +1,13 @@
+
+@use 'variables' as *;
+
+footer {
+    height: $footer-height;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
