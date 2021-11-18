@@ -1,0 +1,80 @@
+@use 'variables' as *;
+@use 'sass:math';
+
+
+.current-score{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.score-item{
+    $score-item-width: math.floor(math.div($header-height, 6));
+    width: $score-item-width;
+    height: $score-item-width;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.score-item-empty{
+    background-color: white;
+}
+
+.score-item-correct {
+    background-color: green;
+}
+
+.score-item-wrong {
+    background-color: red;
+}
+
+.picture-question-container img{
+    width: 100%;
+    height: auto;
+}
+
+.authors-answers-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1vh;
+}
+
+.option-painter {
+    width: 100%;
+    height: 12vh;
+    background-color: aquamarine;
+}
+
+.picture-question-container {
+    text-align: center;
+}
+
+.picture-question-container img {
+    width: auto;
+    height: 50vh;
+}
+
+.pictures-answers-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.option-image {
+    content: '';
+    width: 100%;
+    height: 30vh;
+    background-size: auto;
+}
+
+.question {
+    display: inline-block;
+    line-height: $header-height;
+    text-align: center;
+    width: 100%;
+}

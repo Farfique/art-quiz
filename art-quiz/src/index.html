@@ -8,13 +8,13 @@
 </head>
 <body>
     <div class="screen main-screen">
-        <header>
-            <h1 class="main-header">ART QUIZ</h1>
+        <header class="main-header">
+            <h1>ART QUIZ</h1>
         </header>
         <main class="main-buttons-container">
-            <button class="main-scr-btn painters-btn">Painters</button>
-            <button class="main-scr-btn images-btn">Paintings</button>
-            <button class="main-scr-btn settings-btn">Settings</button>    
+            <button class="main-scr-btn painters-btn">Художники</button>
+            <button class="main-scr-btn images-btn">Картины</button>
+            <button class="main-scr-btn settings-btn">Настройки</button>    
         </main>
         <footer class="main-scr-footer">
             <div class="git-link"><a href="https://github.com/Farfique">My GitHub</a></div>
@@ -23,9 +23,21 @@
         </footer>
         
     </div>
-    <div class="screen categories-screen screen-hidden">
+    <div class="screen categories-screen painters-categories screen-hidden">
         <header>
-            <h2 class="categories-header">Categories</h2>
+            <button class="back-button icon"></button>
+            <h2 class="categories-header">Категории</h2>
+            <button class="home-button icon"></button>
+        </header>
+        <main class="categories">
+            
+        </main>
+    </div>
+    <div class="screen categories-screen images-categories screen-hidden">
+        <header>
+            <button class="back-button icon"></button>
+            <h2 class="categories-header">Категории</h2>
+            <button class="home-button icon"></button>
         </header>
         <main class="categories">
             
@@ -33,21 +45,41 @@
     </div>
     <div class="screen category-score-screen screen-hidden">
         <header>
+            <button class="back-button icon"></button>
             <h2 class="categories-header">Category score</h2>
+            <button class="home-button icon"></button>
         </header>
         <main class="score">
             
         </main>
     </div>
-    <div class="screen round-start-screen screen-hidden">
-
-    </div>
     <div class="screen question-screen screen-hidden">
-
+        <header>
+            <button class="back-button icon"></button>
+            <ul class="current-score"></ul>
+            <button class="home-button icon"></button>
+        </header>
+        <main class="round-main">
+            <div class="question question-font"></div>
+            <div class="game-block"></div>
+        </main>
     </div>
     <div class="answer-popup popup-hidden">
-
+        <img class="popup-icon" src="" alt="">
+        <img class="popup-image" src="" alt="">
+        <div class="popup-author popup-info"></div>
+        <div class="popup-name popup-info"></div>
+        <div class="popup-year popup-info"></div>
+        <button class="popup-button button-font general-button"></button>
     </div>
-    <div class="screen round-result-screen screen-hidden"></div>
+    <div class="overlay overlay-hidden"></div>
+    <div class="screen round-result-screen screen-hidden">
+        <div>
+            <img class="result-image" src="assets/svg/finish.svg" alt="">
+            <h2 class="round-result-header">Результат игры</h2>
+            <div class="round-score"></div>
+            <button class="button-round-score button-font general-button">Продолжить</button>
+        </div>
+    </div>
 </body>
 </html>

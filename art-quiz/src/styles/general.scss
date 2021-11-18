@@ -1,4 +1,5 @@
 @use 'variables' as *;
+@use 'sass:math';
 
 html {
     font-size: 16px;
@@ -15,8 +16,7 @@ body {
 }
 
 main {
-    margin-left: 40px;
-    margin-right: 40px;
+    margin: 0;
 }
 
 header {
@@ -41,12 +41,40 @@ h2 {
 }
 
 .card-header {
+    font-size: 2.3rem;
+    font-weight: bold;
+}
+
+.question-font {
     font-size: 1.3rem;
 }
 
 .button-font {
     font-size: 1.3rem;
     text-transform: capitalize;
+}
+
+.general-button {
+    width: 50%;
+    height: 10vh;
+    background-color: green;
+    color: black;
+}
+
+.back-button {
+    background-image: url('../assets/svg/arrow_back.svg');
+}
+
+.home-button {
+    background-image: url('../assets/svg/home_black.svg');
+}
+
+.icon {
+    width: math.floor(math.div($header-height, 2));
+    height: math.floor(math.div($header-height, 2));
+    background-size: contain;
+    background-color: inherit;
+    background-repeat: no-repeat;
 }
 
 
@@ -68,5 +96,11 @@ h2 {
 }
 
 .screen {
-    height: $screen-height;
+    height: 100vh;
+}
+
+.screen header{
+    display: grid;
+    grid-template-columns: max-content 1fr max-content;
+    align-items: center;
 }

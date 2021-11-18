@@ -1,34 +1,50 @@
 @use 'variables' as *;
+@use 'sass:math';
 
 $base-color: #c6538c;
+$cat-height: 20vh;
+$cat-score-height: math.floor(math.div($cat-height, 4));
 
 .categories {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 3vh;
 }
 
 .category {
     position: relative;
     background-color: $base-color;
-    height: 100px;
-    width: 100%;
-    div {
+    height: $cat-height;
+    width: 90%;
+    margin-left: 10%;
+    border-bottom-left-radius: 18px;
+    & > .card-header {
         display: inline-block;
         position: absolute;
-        top: 0;
-        left: 0;
-        height: $header-height;
-        line-height: $header-height;
+        top: 3vh;
+        left: 3vh;
+        height: 2.3rem;
+        line-height: 2.3rem;
     }
     .cat-score {
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 1vh;
+        right: 5vh;
         background-color: $base-color;
-        width: 20px;
-        height: 10px;
+        height: $cat-score-height;
+        font-size: $cat-score-height    
+    }
 
+    .cat-score::after {
+        position:absolute;
+        top:0;
+        left:100%;
+        content: "";
+        background-image: url('../assets/svg/star.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: $cat-score-height;
+        width: $cat-score-height;
     }
 }
 

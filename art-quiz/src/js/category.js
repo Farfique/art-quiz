@@ -1,12 +1,16 @@
-import { TYPES } from "./components/mainScreen";
+import { TYPES } from "./consts";
+import Round from "./components/round";
+
 export default class Category {
 
-    constructor(type, numberStr){
+    constructor(parentScreen, type, numberStr){
+        this.parentScreen = parentScreen;
         this.type = type;
         this.number = numberStr;
-        this.played = false;
+        this.played = true; //temp
         this.pictures = [];
         this.score = 0;
+        this.el = null;
     }
 
     init(allImages, indexStart, questionsNum){
@@ -15,7 +19,7 @@ export default class Category {
             this.pictures.push(image);
         };
         this.score = this.getScore();
-        console.log("category type = ", this.type, ", category number = ", this.numberStr, ", category image 1 = ", this.pictures[0], ", length = ", this.pictures.length);
+        console.log("category type = ", this.type, ", category number = ", this.number, ", category image 1 = ", this.pictures[0], ", length = ", this.pictures.length);
         this.renderCat();
     }
 
@@ -27,7 +31,7 @@ export default class Category {
     }
 
     getScore(){
-        this.pictures.reduce((sum, image) => {
+        return this.pictures.reduce((sum, image) => {
             return sum + (image.correct? 1 : 0)
         }, 0);
     }
@@ -35,7 +39,7 @@ export default class Category {
 
 
     renderCat(){
-        let cats = document.querySelector('.categories');
+        let cats = this.parentScreen.element.querySelector('.categories');
         let el = document.createElement('div');
         el.classList.add(`cat-${this.typeToString(this.type)}`, 'category');
         
@@ -45,12 +49,32 @@ export default class Category {
         el.append(numberEl);
         if (this.played){
             let score = document.createElement('button');
-            score.classList.add('cat-score', 'button-font');
+            score.classList.add('cat-score');
             score.innerText = this.score;
             el.append(score);
         }
+        this.el = el;
+
+        el.addEventListener('click', () => {
+            this.parentScreen.toggleShowHide();
+            let round = new Round(this);
+            round.init();
+        })
         
         cats.append(el);
+
+    }
+
+    updateCat(){
+        let scoreBtn = this.el.querySelector('cat-score');
+        if (!scoreBtn){
+            scoreBtn = document.createElement('button');
+            scoreBtn.classList.add('cat-score');
+            scoreBtn.innerText = this.score;
+            this.el.append(scoreBtn);
+        }
+
+        scoreBtn.innerText = this.score;
 
     }
 }

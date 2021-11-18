@@ -1,8 +1,12 @@
 import { getRandomNumber } from './utils'
 
-export default class Data {
+class Data {
     constructor(){
-        this.images = [];
+        if (!Data.instance){
+            this.images = [];
+            Data.instance = this;
+        }
+        return Data.instance;        
     }
 
     async init(){
@@ -24,16 +28,43 @@ export default class Data {
         return this.images.length;
     }
 
-    isSameAuthor(current, compare){
-        return getImageByNumber(current).author === this.getImageByNumber(compare).author;
-    }
-
-    isSameImage(current, compare){
-        return getImageByNumber(current).name === this.getImageByNumber(compare).name;
-    }
-
-    getThreeImagesWithDifferentAuthors(current){
-        let arr = [];
+    getThreeRandomAuthors(notEqualToThisAuthor){
+        let res = [];
+        let allAuthors = [notEqualToThisAuthor];
         
+        while (res.length < 3){
+            let currAuthor = this.getRandomImage().author;
+            if (!allAuthors.includes(currAuthor)){
+                res.push(currAuthor);
+                allAuthors.push(currAuthor);
+            }
+        }
+
+        return res;
+    }
+
+    getThreeRandomImageNums(whoseAuthorsNotEqualToThisAuthor){
+        let res = [];
+        
+        while (res.length < 3){
+            let currImage = this.getRandomImage();
+            let imageNum = currImage.imageNum;
+            if (whoseAuthorsNotEqualToThisAuthor != currImage.author && !res.includes(imageNum)){
+                res.push(imageNum);
+            }
+        }
+
+        return res;
+
+    }
+
+    getLinkToSquareImage(imageNum){        
+        return `/assets/images/img/${imageNum}.jpg`;
     }
 }
+
+const instance = new Data();
+
+Object.freeze(instance);
+
+export default instance;

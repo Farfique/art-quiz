@@ -1,8 +1,20 @@
 import '../styles/app.scss'
-import { MainScreen } from './components/mainScreen'
+import MainScreen from './components/mainScreen'
+import Data from './data'
 
-let mainScr = new MainScreen();
-mainScr.init();
+
+
+
+initApp();
+
+async function initApp(){
+    await Data.init();
+
+    console.log("inited data images = ", Data.images);
+
+    MainScreen.init();
+
+}
 
 
 
