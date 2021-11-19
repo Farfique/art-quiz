@@ -1,5 +1,6 @@
 @use 'variables' as *;
 @use 'sass:math';
+@use 'sass:color';
 
 $base-color: #c6538c;
 $cat-height: 20vh;
@@ -13,7 +14,9 @@ $cat-score-height: math.floor(math.div($cat-height, 4));
 
 .category {
     position: relative;
-    background-color: $base-color;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
     height: $cat-height;
     width: 90%;
     margin-left: 10%;
@@ -59,5 +62,9 @@ $cat-score-height: math.floor(math.div($cat-height, 4));
 .cat01 {
     font: 'Roboto';
     color: orange;
+}
+
+.category-not-played {
+  background-blend-mode: saturation;
 }
 

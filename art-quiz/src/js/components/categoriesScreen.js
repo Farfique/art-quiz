@@ -29,7 +29,7 @@ export default class CategoriesScreen extends ScreenBase{
             let numberStr = (i + 1).toString().padStart(2, "0");
             let cat = new Category(this, this.type, numberStr);
             this.categories.push(cat);            
-            cat.init(images, thisTypeStartIndex + i * QUESTIONS_IN_CATEGORY, QUESTIONS_IN_CATEGORY);
+            await cat.init(images, thisTypeStartIndex + i * QUESTIONS_IN_CATEGORY, QUESTIONS_IN_CATEGORY);
            
         }
         this.wasInit = true;
