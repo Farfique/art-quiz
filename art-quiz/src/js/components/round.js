@@ -1,6 +1,6 @@
 import { ScreenBase } from "./ScreenBase";
 import { TYPES, QUESTIONS_IN_CATEGORY } from '../consts';
-import { cloneArrayOfObjects, replaceElementByClone } from "../utils";
+import { clearBlockAndReturn, cloneArrayOfObjects, replaceElementByClone } from "../utils";
 import Popup from './answerPopup';
 import ImagesGameRound from './imagesGameRound';
 import PaintersGameRound from "./paintersGameRound";
@@ -19,7 +19,8 @@ export default class Round extends ScreenBase {
         this.initBackButton();
         this.initHomeButton();
         this.renderScore();
-        await this.renderGame();
+        let block = await this.renderGame();
+        console.log("block = ", block);
         this.toggleShowHide();
 
     }
@@ -66,29 +67,27 @@ export default class Round extends ScreenBase {
     async renderGame(){
         let block = this.clearGameBlockAndReturn();
         let currentImage = this.getCurrentPicture();
+        console.log("renderGame = ", block);
 
         await this.type.renderGame(block, currentImage);
+        console.log("renderGame = ", block);
+        return block;
 
     }
 
     clearGameBlockAndReturn(){
-        let block = document.querySelector('.game-block');
-
-        while (block.firstChild) {
-            block.removeChild(block.lastChild);
-        }
-
-        let newBlock = block.cloneNode(true);
-
         let parentBlock = document.querySelector('.round-main');
-        parentBlock.replaceChild(newBlock, block);
+
+        let block = clearBlockAndReturn(document.querySelector('.game-block'), parentBlock);
 
         let process = this.processAnswer.bind(this);
 
-        newBlock.addEventListener('answered', process);
+        block.addEventListener('answered', process);
 
-        return newBlock;
+        return block;
     }
+
+    
 
     
 
@@ -119,11 +118,7 @@ export default class Round extends ScreenBase {
     }
 
     saveScore(){
-        this.parent.pictures = cloneArrayOfObjects(this.pictures);
-        console.log("category pictures after save: ", this.parent.pictures);
-        this.parent.score = this.parent.getScore();
-        this.parent.played = true;
-        this.parent.updateCat();
+        this.parent.saveScore(this.pictures);
     }
 
     showRoundResults() {

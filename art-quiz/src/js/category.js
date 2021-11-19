@@ -1,6 +1,8 @@
 import { TYPES } from "./consts";
 import Round from "./components/round";
 import Data from "./data";
+import ScoreScreen from "./components/scoreScreen";
+import { saveToLocalStorage, retrieveFromLocalStorage, cloneArrayOfObjects } from "./utils";
 
 export default class Category {
 
@@ -15,10 +17,20 @@ export default class Category {
     }
 
     async init(allImages, indexStart, questionsNum){
-        for (let i = indexStart; i < indexStart + questionsNum; i++){
-            let image = Object.assign({}, allImages[i]);
-            this.pictures.push(image);
-        };
+        this.played = (retrieveFromLocalStorage(this.getPlayedLocalStorageString) == 'true') || false;
+
+        if (this.played){
+            this.pictures = JSON.parse(retrieveFromLocalStorage(this.getPicturesArrayLocalStorageString));
+            console.log("this.pictures after localStorage");
+        }
+        if (this.pictures.length == 0){
+            console.log("no pictures");
+            for (let i = indexStart; i < indexStart + questionsNum; i++){
+                let image = Object.assign({}, allImages[i]);
+                this.pictures.push(image);
+            };
+        }
+        
         this.score = this.getScore();
         console.log("category type = ", this.type, ", category number = ", this.number, ", category image 1 = ", this.pictures[0], ", length = ", this.pictures.length);
         await this.renderCat();
@@ -29,6 +41,14 @@ export default class Category {
             case TYPES.painters: return 'p';
             case TYPES.images: return 'i';
         }
+    }
+
+    get getPlayedLocalStorageString(){
+        return `cat-${this.typeToString(this.type)}-${this.number}-played`;
+    }
+
+    get getPicturesArrayLocalStorageString(){
+        return `cat-${this.typeToString(this.type)}-${this.number}-pictures`;
     }
 
     getScore(){
@@ -53,15 +73,13 @@ export default class Category {
 
 
             if (this.played){
-                let score = document.createElement('button');
-                score.classList.add('cat-score');
-                score.innerText = this.score;
-                el.append(score);
+                this.renderScoreButton(el);
             }
    
             this.el = el;
 
-            el.addEventListener('click', () => {
+            el.addEventListener('click', (event) => {
+                if (event.defaultPrevented) return;
                 this.parentScreen.toggleShowHide();
                 let round = new Round(this);
                 round.init();
@@ -90,7 +108,24 @@ export default class Category {
 
     }
 
+    renderScoreButton(parentEl){
+        let score = document.createElement('button');
+        score.classList.add('cat-score');
+        score.innerText = this.score;
+        parentEl.append(score);
+        score.addEventListener('click', (event) => {
+            event.preventDefault();
+            let scoreScreen = new ScoreScreen(this);
+            
+            this.parentScreen.toggleShowHide();
+            scoreScreen.init();
+        })
+        return score;
+    }
+
     updateCat(){
+        
+
         let backgrImage = new Image();
             backgrImage.src = Data.getLinkToSquareImage(this.pictures[0].imageNum);
             backgrImage.onload = () => {
@@ -100,14 +135,21 @@ export default class Category {
             }
         let scoreBtn = this.el.querySelector('cat-score');
         if (!scoreBtn){
-            scoreBtn = document.createElement('button');
-            scoreBtn.classList.add('cat-score');
-            scoreBtn.innerText = this.score;
-            this.el.append(scoreBtn);
+            scoreBtn = this.renderScoreButton(this.el);
         }
 
         scoreBtn.innerText = this.score;
         
 
+    }
+
+    saveScore(arrayOfPictures){
+        this.pictures = cloneArrayOfObjects(arrayOfPictures);
+        console.log("category pictures after save: ", this.pictures);
+        this.score = this.getScore();
+        this.played = true;
+        saveToLocalStorage(this.getPlayedLocalStorageString, 'true');
+        saveToLocalStorage(this.getPicturesArrayLocalStorageString, JSON.stringify(this.pictures));
+        this.updateCat();
     }
 }

@@ -6,6 +6,7 @@ export default class PaintersGameRound {
     }
 
     async renderGame(block, currentImage){
+        console.log("renderGame = ", block);
         let question = document.querySelector('.question');
         question.innerText = "Кто автор этой картины?";
         
@@ -40,6 +41,7 @@ export default class PaintersGameRound {
         
         
                 block.append(optionsBlock);
+                console.log("renderGame = ", block);
     
                 resolve();    
             }

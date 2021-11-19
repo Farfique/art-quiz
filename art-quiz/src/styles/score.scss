@@ -1,0 +1,21 @@
+.score {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5%;
+}
+
+.score-picture-div {
+    width: 30%;
+    height: 30%;
+}
+
+.score-picture-div img {
+    width: 100%;
+    height: auto;
+}
+
+.score-wrong {
+    filter: grayscale(1);
+}

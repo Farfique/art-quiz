@@ -1,3 +1,5 @@
+import { isLocalStorage } from ".";
+
 export function getRandomNumber(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -35,3 +37,35 @@ export function shuffle(array) {
     
     return newBlock;
 }
+
+  export function clearBlockAndReturn(block, parentElement){
+    console.log("block to clear = ", block);
+    while (block.firstChild) {
+        block.removeChild(block.lastChild);
+    }
+
+    let newBlock = block.cloneNode(true);
+
+    parentElement.replaceChild(newBlock, block);
+    console.log("parentElement = ", parentElement);
+
+    return newBlock;
+}
+
+export function saveToLocalStorage(key, str){
+  if (isLocalStorage){
+    localStorage.setItem(key, str);
+  }
+
+}
+
+export function retrieveFromLocalStorage(key){
+  if (isLocalStorage){
+    return localStorage.getItem(key);
+  }
+  else {
+    return undefined;
+  }
+}
+
+

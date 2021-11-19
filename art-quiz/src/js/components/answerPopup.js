@@ -34,7 +34,7 @@ class Popup {
             newBtn.innerText = btnTitle;
             newBtn.addEventListener('click', () => {
                 this.toggleShowHide();
-                btnCallback();
+                if (btnCallback) btnCallback();
             });
     
             this.toggleShowHide();
