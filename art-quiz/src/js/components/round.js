@@ -1,6 +1,6 @@
 import { ScreenBase } from "./ScreenBase";
 import { TYPES, QUESTIONS_IN_CATEGORY } from '../consts';
-import { cloneArrayOfObjects } from "../utils";
+import { cloneArrayOfObjects, replaceElementByClone } from "../utils";
 import Popup from './answerPopup';
 import ImagesGameRound from './imagesGameRound';
 import PaintersGameRound from "./paintersGameRound";
@@ -16,10 +16,25 @@ export default class Round extends ScreenBase {
     }
 
     async init() {
+        this.initBackButton();
+        this.initHomeButton();
         this.renderScore();
         await this.renderGame();
         this.toggleShowHide();
 
+    }
+
+    initBackButton(){
+        let backButton = replaceElementByClone(this.element.querySelector('.back-button'), this.element.querySelector('header'));
+        backButton.addEventListener('click', (event) => {
+            if (event.defaultPrevented) return;
+
+            event.preventDefault();
+
+            console.log("button Back on Round screen");
+            this.toggleShowHide();
+            this.parent.parentScreen.toggleShowHide();
+        })
     }
 
     getGameType(category){
@@ -74,6 +89,8 @@ export default class Round extends ScreenBase {
 
         return newBlock;
     }
+
+    
 
     processAnswer(){
         console.log("current response is ", this.getCurrentPicture().author);

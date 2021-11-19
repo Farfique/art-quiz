@@ -2,6 +2,7 @@ import Data from "../data";
 import Category from "../category";
 import { TYPES, QUESTIONS_IN_CATEGORY } from '../consts';
 import { ScreenBase } from "./ScreenBase";
+import MainScreen from './mainScreen';
 
 
 
@@ -32,7 +33,24 @@ export default class CategoriesScreen extends ScreenBase{
             await cat.init(images, thisTypeStartIndex + i * QUESTIONS_IN_CATEGORY, QUESTIONS_IN_CATEGORY);
            
         }
+
+        this.initBackButton();
+        this.initHomeButton();
+
         this.wasInit = true;
+    }
+
+    initBackButton(){
+        let backButton = this.element.querySelector('.back-button');
+        backButton.addEventListener('click', (event) => {
+            if (event.defaultPrevented) return;
+
+            event.preventDefault();
+
+            console.log("button Back on Categories screen");
+            this.toggleShowHide();
+            MainScreen.toggleShowHide();
+        })
     }
 
     getCategoriesNumber(allDataArray){

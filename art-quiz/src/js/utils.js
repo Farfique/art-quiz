@@ -27,3 +27,11 @@ export function shuffle(array) {
       return Object.assign({}, obj);
     })
   }
+
+  export function replaceElementByClone(element, parent){
+
+    let newBlock = element.cloneNode(true);
+    parent.replaceChild(newBlock, element); 
+    
+    return newBlock;
+}
