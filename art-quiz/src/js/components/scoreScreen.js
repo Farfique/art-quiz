@@ -47,7 +47,7 @@ export default class ScoreScreen extends ScreenBase{
         return Promise.all(this.pictures.map(image => {
             return new Promise((resolve, reject) => {
                 let divEl = document.createElement('div');
-                divEl.classList.add('score-picture-div');
+                divEl.classList.add('score-picture-div', 'button-card');
                 if (!image.correct){
                     divEl.classList.add('score-wrong');
                 }

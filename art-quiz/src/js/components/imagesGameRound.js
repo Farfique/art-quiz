@@ -43,8 +43,7 @@ export default class ImagesGameRound {
             img.src = Data.getLinkToSquareImage(imageNum);
             img.onload = () => {      
                 el.style.backgroundImage = `url(${img.src})`;
-                el.classList.add('option-image');
-                el.innerText = imageNum;
+                el.classList.add('option-image', 'button-card');
                 el.addEventListener('click', () => {
                     console.log(`button with imageNum ${imageNum} was clicked`);
 

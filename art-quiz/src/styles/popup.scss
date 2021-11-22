@@ -1,26 +1,31 @@
+@use 'variables' as *;
+
 .answer-popup {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 60vh;
+    max-width: $max-app-width;
+    height: 70vh;
     z-index: 20;
     background-color: white;
     text-align: center;
     padding-top: 6vh;
     padding-bottom: 6vh;
     overflow-x: clip;
+    transition: 1s;
 
 }
 
 .popup-hidden {
     display: none;
+    bottom: -70vh;
 }
 
 .popup-icon {
     position: absolute;
     top: -5vh;
     border-radius: 50%;
-    left: calc(50vw - 5vh);
+    left: calc(50% - 4vh);
     width: 8vh;
     height: 8vh;
     background-color: white;

@@ -52,7 +52,7 @@ export default class PaintersGameRound {
 
     createOptionFromPainter(author, currentImage){
         let el = document.createElement('button');
-        el.classList.add('option-painter');
+        el.classList.add('option-painter',  'button-card');
         el.innerText = author;
         el.addEventListener('click', () => {
             console.log(`button with painter ${author} was clicked`);

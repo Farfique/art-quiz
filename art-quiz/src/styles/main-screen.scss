@@ -1,18 +1,26 @@
 @use 'variables' as *;
 @use 'sass:math';
 
+$mainscr-height: 100% - $footer-height - $header-height;
 
 .main-buttons-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 100vh - $footer-height - $header-height;
+    height: $mainscr-height;
+    margin-left: 5vw;
+    margin-right: 5vw;
 }
 
 .main-scr-btn {
     width: 100%;
-    height: math.floor(math.div(100vh - $footer-height - $header-height, 12) * 3);
+    height: 25%;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #c46b50, #ba8a22, transparent 75%), linear-gradient(286deg, #ed9425, #d5c614, transparent 95%);
+    font-family: inherit;
+    font-style: italic;
+    font-size: 2rem;
 }
 
 .main-scr-footer {
@@ -20,5 +28,7 @@
 }
 
 .main-screen .main-header {
-    display: block;
+    display: flex;
+    justify-content: center;
 }
+

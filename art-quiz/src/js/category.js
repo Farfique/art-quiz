@@ -64,7 +64,7 @@ export default class Category {
         return new Promise((resolve, reject) => {
             let cats = this.parentScreen.element.querySelector('.categories');
             let el = document.createElement('div');
-            el.classList.add(`cat-${this.typeToString(this.type)}`, 'category');
+            el.classList.add(`cat-${this.typeToString(this.type)}`, 'category',  'button-card');
             
             let numberEl = document.createElement('div');
             numberEl.classList.add('card-header');
@@ -110,7 +110,7 @@ export default class Category {
 
     renderScoreButton(parentEl){
         let score = document.createElement('button');
-        score.classList.add('cat-score');
+        score.classList.add('cat-score', 'button-card');
         score.innerText = this.score;
         parentEl.append(score);
         score.addEventListener('click', (event) => {

@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art Quiz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alice&family=Cormorant:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
@@ -13,14 +16,14 @@
                 <h1>ART QUIZ</h1>
             </header>
             <main class="main-buttons-container">
-                <button class="main-scr-btn painters-btn">Художники</button>
-                <button class="main-scr-btn images-btn">Картины</button>
-                <button class="main-scr-btn settings-btn">Настройки</button>    
+                <button class="main-scr-btn painters-btn button-card">Художники</button>
+                <button class="main-scr-btn images-btn button-card">Картины</button>
+                <button class="main-scr-btn settings-btn button-card">Настройки</button>    
             </main>
-            <footer class="main-scr-footer">
+            <footer class="main-scr-footer footer-font">
                 <div class="git-link"><a href="https://github.com/Farfique">My GitHub</a></div>
                 <p>&copy;2021</p>
-                <div class="rsschool-link"><a href="https://rs.school/js/"><img class="rss-logo" alt="RSSchool Logo" src="./img/rsschooljs-logo-white.svg"></a></div>
+                <div class="rsschool-link"><a href="https://rs.school/js/"><img class="rss-logo" alt="RSSchool Logo" src="./assets/svg/rsschooljs-logo-white.svg"></a></div>
             </footer>
             
         </div>
@@ -58,7 +61,7 @@
             </main>
         </div>
         <div class="screen categories-screen painters-categories screen-hidden">
-            <header>
+            <header  class="scroll-header">
                 <button class="back-button icon"></button>
                 <h2 class="categories-header">Категории</h2>
                 <button class="home-button icon"></button>
@@ -68,7 +71,7 @@
             </main>
         </div>
         <div class="screen categories-screen images-categories screen-hidden">
-            <header>
+            <header class="scroll-header">
                 <button class="back-button icon"></button>
                 <h2 class="categories-header">Категории</h2>
                 <button class="home-button icon"></button>
@@ -78,7 +81,7 @@
             </main>
         </div>
         <div class="screen category-score-screen screen-hidden">
-            <header>
+            <header  class="scroll-header">
                 <button class="back-button icon"></button>
                 <h2 class="categories-header">Результаты по категории</h2>
                 <button class="home-button icon"></button>
@@ -94,7 +97,7 @@
                 <button class="home-button icon"></button>
             </header>
             <main class="round-main">
-                <div>
+                <div class="round-topic">
                     <div class="timer"></div>
                     <div class="question question-font"></div>
                 </div>            
@@ -107,7 +110,7 @@
             <div class="popup-author popup-info"></div>
             <div class="popup-name popup-info"></div>
             <div class="popup-year popup-info"></div>
-            <button class="popup-button button-font general-button"></button>
+            <button class="popup-button button-font general-button button-card"></button>
         </div>
         <div class="overlay overlay-hidden"></div>
         <div class="screen round-result-screen screen-hidden">
@@ -115,7 +118,7 @@
                 <img class="result-image" src="assets/svg/finish.svg" alt="">
                 <h2 class="round-result-header">Результат игры</h2>
                 <div class="round-score"></div>
-                <button class="button-round-score button-font general-button">Продолжить</button>
+                <button class="button-round-score button-font general-button button-card">Продолжить</button>
             </div>
         </div>
     </div>

@@ -4,12 +4,13 @@
 
 $base-color: #c6538c;
 $cat-height: 20vh;
-$cat-score-height: math.floor(math.div($cat-height, 4));
+$cat-score-height: 11vh;
 
 .categories {
     display: flex;
     flex-direction: column;
     gap: 3vh;
+    margin-top: 20%;
 }
 
 .category {
@@ -18,45 +19,39 @@ $cat-score-height: math.floor(math.div($cat-height, 4));
     background-repeat: no-repeat;
     background-position: center center;
     height: $cat-height;
-    width: 90%;
-    margin-left: 10%;
+    margin-left: 5vw;
     border-bottom-left-radius: 18px;
     & > .card-header {
         display: inline-block;
         position: absolute;
-        top: 3vh;
+        top: 0;
         left: 3vh;
         height: 2.3rem;
-        line-height: 2.3rem;
+        line-height: 11vmin;
     }
-    .cat-score {
+    .cat-score {       
         position: absolute;
         top: 1vh;
-        right: 5vh;
-        background-color: $base-color;
+        right: 1vh;
+        background-color: transparent;
+        width: $cat-score-height;
         height: $cat-score-height;
-        font-size: $cat-score-height    
-    }
-
-    .cat-score::after {
-        position:absolute;
-        top:0;
-        left:100%;
-        content: "";
+        font-size: 3vh;
         background-image: url('../assets/svg/star.svg');
         background-repeat: no-repeat;
-        background-size: contain;
-        height: $cat-score-height;
-        width: $cat-score-height;
+        background-size: cover;
     }
+    
 }
 
 .cat-p {
-    color: green;
+    color: #ac6e21;
+    text-shadow: 1px 1px black;
 }
 
 .cat-i {
-    color: pink;
+    color: #ac4121;
+    text-shadow: 1px 1px black;
 }
 
 .cat01 {
@@ -66,5 +61,6 @@ $cat-score-height: math.floor(math.div($cat-height, 4));
 
 .category-not-played {
   background-blend-mode: saturation;
+  color: #b9b9b9;
 }
 

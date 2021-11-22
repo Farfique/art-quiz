@@ -5,14 +5,26 @@ html {
     font-size: 16px;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
 
     background-color: $bgr-color;
-    font-family: 'Roboto', 'sans-serif';
+    font-family: 'Cormorant', 'sans-serif';
     font-size: 1rem;
     color: $font-color;
     margin: 0;
         
+}
+
+.app-container {
+    width: 100%;
+    max-width: $max-app-width;
+    margin: auto;
+    overflow-x: clip;
+    overflow-y: scroll;
 }
 
 main {
@@ -26,31 +38,43 @@ header {
     text-align: center;
 }
 
+.scroll-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 15;
+}
+
 h1 {
     margin: 0;
-    font-size: 2rem;
+    font-size: 8vmin;
     text-transform: capitalize;
-    line-height: $header-height;
+    font-family: 'Alice', serif;
 
 }
 
 h2 {
     margin: 0;
-    font-size: 1.6rem;
-    line-height: $header-height;
+    font-size: 6vmin;
+    font-family: 'Alice', 'serif';
 }
 
 .card-header {
-    font-size: 2.3rem;
+    font-size: 11vmin;
     font-weight: bold;
 }
 
+.footer-font {
+    font-size: 5vmin;
+}
+
 .question-font {
-    font-size: 1.3rem;
+    font-size: 6vmin;
 }
 
 .button-font {
-    font-size: 1.3rem;
+    font-size: 6vmin;
     text-transform: capitalize;
 }
 
@@ -70,8 +94,8 @@ h2 {
 }
 
 .icon {
-    width: math.floor(math.div($header-height, 2));
-    height: math.floor(math.div($header-height, 2));
+    width: 2.5rem;
+    height: 2.5rem;
     background-size: contain;
     background-color: inherit;
     background-repeat: no-repeat;
@@ -96,15 +120,33 @@ h2 {
 }
 
 .screen {
-    height: 100vh;
+    height: $app-height;
 }
 
 .screen header{
     display: grid;
     grid-template-columns: max-content 1fr max-content;
     align-items: center;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    background-color: white;
+    gap: 4vw;
 }
 
 .hidden {
     display: none;
+}
+
+.button-card {
+    box-shadow: 5px 5px 20px 1px rgb(0 0 0 / 30%);
+}
+
+.button-card:hover {
+    box-shadow: 5px 5px 20px 1px rgb(0 0 0 / 80%);
+    font-weight: bolder;
+}
+
+.button-card:active {
+    box-shadow: 4px 4px 15px 1px rgb(0 0 0 / 40%);
+    font-weight: bolder;
 }
