@@ -5,6 +5,8 @@ import Popup from './answerPopup';
 import ImagesGameRound from './imagesGameRound';
 import PaintersGameRound from "./paintersGameRound";
 import RoundResultScreen from './roundResultScreen';
+import Settings from './settingsScreen';
+import MainScreen from './mainScreen';
 
 export default class Round extends ScreenBase {
     constructor(category){
@@ -13,6 +15,8 @@ export default class Round extends ScreenBase {
         this.type = this.getGameType(category)
         this.pictures = cloneArrayOfObjects(category.pictures);
         this.questionNumber = 0;
+        this.timeoutId = null;
+        this.intervalId = null;
     }
 
     async init() {
@@ -22,7 +26,7 @@ export default class Round extends ScreenBase {
         let block = await this.renderGame();
         console.log("block = ", block);
         this.toggleShowHide();
-
+        
     }
 
     initBackButton(){
@@ -31,10 +35,23 @@ export default class Round extends ScreenBase {
             if (event.defaultPrevented) return;
 
             event.preventDefault();
-
+            this.stopTimers();
             console.log("button Back on Round screen");
             this.toggleShowHide();
             this.parent.parentScreen.toggleShowHide();
+        })
+    }
+
+    initHomeButton(){
+        let homeButton = replaceElementByClone(this.element.querySelector('.home-button'), this.element.querySelector('header'));
+        homeButton.addEventListener('click', (event) => {
+            if (event.defaultPrevented) return;
+
+            event.preventDefault();
+            this.stopTimers();
+            console.log("button Home");
+            this.toggleShowHide();
+            MainScreen.toggleShowHide();
         })
     }
 
@@ -65,12 +82,39 @@ export default class Round extends ScreenBase {
     }
 
     async renderGame(){
+
+
         let block = this.clearGameBlockAndReturn();
         let currentImage = this.getCurrentPicture();
         console.log("renderGame = ", block);
 
         await this.type.renderGame(block, currentImage);
         console.log("renderGame = ", block);
+
+        let timerEl = document.querySelector('.timer');
+
+        if (Settings.timer){
+            timerEl.innerText = Settings.timeAmount;
+            timerEl.classList.remove('hidden');
+
+            this.timeoutId = setTimeout(() => {
+                let timeoutEvent = new CustomEvent('timeout');
+                clearInterval(this.intervalId);
+                block.dispatchEvent(timeoutEvent);
+    
+            }, Settings.timeAmount * 1000);
+    
+            let timeleft = Settings.timeAmount;
+            this.intervalId = setInterval(() => {
+                timerEl.innerText = --timeleft;
+            }, 1000);
+        }
+        else {
+            timerEl.classList.add('hidden');
+        }
+
+       
+
         return block;
 
     }
@@ -82,9 +126,26 @@ export default class Round extends ScreenBase {
 
         let process = this.processAnswer.bind(this);
 
-        block.addEventListener('answered', process);
+        block.addEventListener('answered', () => {
+            this.stopTimers();
+            
+            this.processAnswer();
+        });
+
+        block.addEventListener('timeout', () => {
+            block.removeEventListener('answered', process);
+            this.getCurrentPicture().correct = false;
+            this.processAnswer();
+        })
 
         return block;
+    }
+
+    stopTimers(){
+        if (Settings.timer){
+            clearTimeout(this.timeoutId);
+            clearInterval(this.intervalId);
+        }
     }
 
     
@@ -93,6 +154,7 @@ export default class Round extends ScreenBase {
 
     processAnswer(){
         console.log("current response is ", this.getCurrentPicture().author);
+        this.playAnswerSound();
         this.renderAnsweredCircle();
         let pCallback = this.popupCallback.bind(this);
         Popup.show(this.getCurrentPicture(), 'Продолжить', pCallback);
@@ -103,6 +165,15 @@ export default class Round extends ScreenBase {
         console.log("round pictures", this.pictures);
         this.saveScore();
         this.showRoundResults();        
+    }
+
+    playAnswerSound(){
+        if (this.getCurrentPicture().correct) {
+            Settings.winPlay();
+        }
+        else {
+            Settings.losePlay();
+        }      
     }
 
 
@@ -123,6 +194,7 @@ export default class Round extends ScreenBase {
 
     showRoundResults() {
         this.toggleShowHide();
+        Settings.finishPlay();
         RoundResultScreen.show(this.parent.score, QUESTIONS_IN_CATEGORY, this.parent.parentScreen);
 
     }    

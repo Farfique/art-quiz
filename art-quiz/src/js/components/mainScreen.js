@@ -2,6 +2,7 @@ import ImagesCategoryScreen from './imagesCategoryScreen';
 import PaintersCategoryScreen from './paintersCategoryScreen';
 import { ScreenBase } from './ScreenBase';
 import { TYPES } from '../consts';
+import Settings from './settingsScreen';
  
 
 
@@ -20,7 +21,7 @@ class MainScreen extends ScreenBase{
         
         let paintersCatBtn = document.querySelector('.painters-btn');
         let imagesCatBtn = document.querySelector('.images-btn');
-        //let settingsBtn = document.querySelector('.settings-btn');
+        let settingsBtn = document.querySelector('.settings-btn');
         
         
         paintersCatBtn.addEventListener('click', () => {
@@ -30,6 +31,11 @@ class MainScreen extends ScreenBase{
         imagesCatBtn.addEventListener('click', () => {
             this.callCatScreen(TYPES.images);
         });
+
+        settingsBtn.addEventListener('click', () => {
+            this.toggleShowHide();
+            Settings.toggleShowHide();
+        } )
     }
 
     callCatScreen(type){

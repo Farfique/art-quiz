@@ -7,78 +7,116 @@
     <title>Art Quiz</title>
 </head>
 <body>
-    <div class="screen main-screen">
-        <header class="main-header">
-            <h1>ART QUIZ</h1>
-        </header>
-        <main class="main-buttons-container">
-            <button class="main-scr-btn painters-btn">Художники</button>
-            <button class="main-scr-btn images-btn">Картины</button>
-            <button class="main-scr-btn settings-btn">Настройки</button>    
-        </main>
-        <footer class="main-scr-footer">
-            <div class="git-link"><a href="https://github.com/Farfique">My GitHub</a></div>
-            <p>&copy;2021</p>
-            <div class="rsschool-link"><a href="https://rs.school/js/"><img class="rss-logo" alt="RSSchool Logo" src="./img/rsschooljs-logo-white.svg"></a></div>
-        </footer>
-        
-    </div>
-    <div class="screen categories-screen painters-categories screen-hidden">
-        <header>
-            <button class="back-button icon"></button>
-            <h2 class="categories-header">Категории</h2>
-            <button class="home-button icon"></button>
-        </header>
-        <main class="categories">
+    <div class="app-container">
+        <div class="screen main-screen">
+            <header class="main-header">
+                <h1>ART QUIZ</h1>
+            </header>
+            <main class="main-buttons-container">
+                <button class="main-scr-btn painters-btn">Художники</button>
+                <button class="main-scr-btn images-btn">Картины</button>
+                <button class="main-scr-btn settings-btn">Настройки</button>    
+            </main>
+            <footer class="main-scr-footer">
+                <div class="git-link"><a href="https://github.com/Farfique">My GitHub</a></div>
+                <p>&copy;2021</p>
+                <div class="rsschool-link"><a href="https://rs.school/js/"><img class="rss-logo" alt="RSSchool Logo" src="./img/rsschooljs-logo-white.svg"></a></div>
+            </footer>
             
-        </main>
-    </div>
-    <div class="screen categories-screen images-categories screen-hidden">
-        <header>
-            <button class="back-button icon"></button>
-            <h2 class="categories-header">Категории</h2>
-            <button class="home-button icon"></button>
-        </header>
-        <main class="categories">
-            
-        </main>
-    </div>
-    <div class="screen category-score-screen screen-hidden">
-        <header>
-            <button class="back-button icon"></button>
-            <h2 class="categories-header">Результаты по категории</h2>
-            <button class="home-button icon"></button>
-        </header>
-        <main class="score">
-            
-        </main>
-    </div>
-    <div class="screen question-screen screen-hidden">
-        <header>
-            <button class="back-button icon"></button>
-            <ul class="current-score"></ul>
-            <button class="home-button icon"></button>
-        </header>
-        <main class="round-main">
-            <div class="question question-font"></div>
-            <div class="game-block"></div>
-        </main>
-    </div>
-    <div class="answer-popup popup-hidden">
-        <img class="popup-icon" src="" alt="">
-        <img class="popup-image" src="" alt="">
-        <div class="popup-author popup-info"></div>
-        <div class="popup-name popup-info"></div>
-        <div class="popup-year popup-info"></div>
-        <button class="popup-button button-font general-button"></button>
-    </div>
-    <div class="overlay overlay-hidden"></div>
-    <div class="screen round-result-screen screen-hidden">
-        <div>
-            <img class="result-image" src="assets/svg/finish.svg" alt="">
-            <h2 class="round-result-header">Результат игры</h2>
-            <div class="round-score"></div>
-            <button class="button-round-score button-font general-button">Продолжить</button>
+        </div>
+        <div class="screen settings-screen screen-hidden">
+            <header>
+                <button class="back-button icon"></button>
+                <h2 class="categories-header">Настройки</h2>
+                <button class="home-button icon"></button>
+            </header>
+            <main class="settings">
+                <div class="sound-container">
+                    <div class="settings-label">Звук</div>
+                    <label class="switch switch-sound">
+                        <input type="checkbox" class="settings-switch-input sound-input">
+                        <span class="slider slider-sound"></span>
+                    </label>
+                </div>
+                <div class="timer-container">
+                    <div class="settings-label">Таймер</div>
+                    <label class="switch switch-timer">
+                        <input type="checkbox" class="settings-switch-input switch-timer-input">
+                        <span class="slider slider-timer"></span>
+                    </label>               
+                </div>
+                <div class="number-container">
+                    <div class="settings-label">Секунды</div>
+                    <div>
+                        <button class="number-button timer-less">–</button>
+                        <input type="number" min="5" max="30" value="30" readonly
+                            class="number-input timer-amount">
+                        <button class="number-button timer-more">+</button>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+        <div class="screen categories-screen painters-categories screen-hidden">
+            <header>
+                <button class="back-button icon"></button>
+                <h2 class="categories-header">Категории</h2>
+                <button class="home-button icon"></button>
+            </header>
+            <main class="categories">
+                
+            </main>
+        </div>
+        <div class="screen categories-screen images-categories screen-hidden">
+            <header>
+                <button class="back-button icon"></button>
+                <h2 class="categories-header">Категории</h2>
+                <button class="home-button icon"></button>
+            </header>
+            <main class="categories">
+                
+            </main>
+        </div>
+        <div class="screen category-score-screen screen-hidden">
+            <header>
+                <button class="back-button icon"></button>
+                <h2 class="categories-header">Результаты по категории</h2>
+                <button class="home-button icon"></button>
+            </header>
+            <main class="score">
+                
+            </main>
+        </div>
+        <div class="screen question-screen screen-hidden">
+            <header>
+                <button class="back-button icon"></button>
+                <ul class="current-score"></ul>
+                <button class="home-button icon"></button>
+            </header>
+            <main class="round-main">
+                <div>
+                    <div class="timer"></div>
+                    <div class="question question-font"></div>
+                </div>            
+                <div class="game-block"></div>
+            </main>
+        </div>
+        <div class="answer-popup popup-hidden">
+            <img class="popup-icon" src="" alt="">
+            <img class="popup-image" src="" alt="">
+            <div class="popup-author popup-info"></div>
+            <div class="popup-name popup-info"></div>
+            <div class="popup-year popup-info"></div>
+            <button class="popup-button button-font general-button"></button>
+        </div>
+        <div class="overlay overlay-hidden"></div>
+        <div class="screen round-result-screen screen-hidden">
+            <div>
+                <img class="result-image" src="assets/svg/finish.svg" alt="">
+                <h2 class="round-result-header">Результат игры</h2>
+                <div class="round-score"></div>
+                <button class="button-round-score button-font general-button">Продолжить</button>
+            </div>
         </div>
     </div>
 </body>

@@ -1,6 +1,7 @@
 import '../styles/app.scss'
 import MainScreen from './components/mainScreen'
 import Data from './data';
+import Settings from './components/settingsScreen';
 
 
 export let isLocalStorage = true;
@@ -10,6 +11,7 @@ initApp();
 
 async function initApp(){
     await Data.init();
+    Settings.init();
 
     console.log("inited data images = ", Data.images);
 

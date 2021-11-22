@@ -9,8 +9,16 @@ module.exports = {
     module: {
         rules: [
           {
-            test: /\.(?:ico|gif|png|jpg|jpeg|svg|webp)$/i,
+            test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/i,
+            dependency: { not: ['url'] },
             type: 'asset/resource',
+          },
+          {
+            test: /\.(?:svg)$/i,
+            type: 'asset/resource',
+            generator : {
+              filename : 'assets/svg/[name][ext][query]',
+            }
           },
           {
             test: /\.(?:mp3|wav|ogg|mp4)$/i,

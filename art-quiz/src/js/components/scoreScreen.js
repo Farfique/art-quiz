@@ -63,11 +63,13 @@ export default class ScoreScreen extends ScreenBase{
                     picture.src = img.src;
                     picture.alt = 'preview';
                     divEl.append(picture);
-                    block.append(divEl);
-                    resolve();
+                    //block.append(divEl);
+                    resolve(divEl);
                 }
             });            
-        }));
+        })).then((arr) => {
+            arr.forEach((divEl) => block.append(divEl));
+        });
 
     }
 
