@@ -21,7 +21,6 @@ export default class CategoriesScreen extends ScreenBase{
     async init(){        
         let images = Data.images;
         this.catNumber = this.getCategoriesNumber(images);
-        console.log("this.catnumber = ", this.catNumber);
         let thisTypeStartIndex = this.getTypeStartIndex(images);
         this.toggleShowHide();
         this.categories = [];
@@ -46,23 +45,17 @@ export default class CategoriesScreen extends ScreenBase{
             if (event.defaultPrevented) return;
 
             event.preventDefault();
-
-            console.log("button Back on Categories screen");
             this.toggleShowHide();
             MainScreen.toggleShowHide();
         })
     }
 
     getCategoriesNumber(allDataArray){
-        console.log("getCategoriesNumber is called");
-        console.log("TYPES = ", TYPES);
-        console.log("TYPES.length = ", Object.values(TYPES).length);
         return Math.floor(allDataArray.length/Object.values(TYPES).length/QUESTIONS_IN_CATEGORY);
     }
 
     getTypeStartIndex(allDataArray){
         let catTypeShift = Math.floor(allDataArray.length/Object.values(TYPES).length);
-        console.log("this type = ", this.type, " and its start index = ", Object.values(TYPES).indexOf(this.type) * catTypeShift);
 
         return Object.values(TYPES).indexOf(this.type) * catTypeShift;
         

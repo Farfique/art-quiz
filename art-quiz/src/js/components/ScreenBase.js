@@ -17,8 +17,6 @@ export class ScreenBase {
             if (event.defaultPrevented) return;
 
             event.preventDefault();
-
-            console.log("button Home");
             this.toggleShowHide();
             MainScreen.toggleShowHide();
         })

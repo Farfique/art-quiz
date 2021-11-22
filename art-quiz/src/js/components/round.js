@@ -24,7 +24,6 @@ export default class Round extends ScreenBase {
         this.initHomeButton();
         this.renderScore();
         let block = await this.renderGame();
-        console.log("block = ", block);
         this.toggleShowHide();
         
     }
@@ -36,7 +35,6 @@ export default class Round extends ScreenBase {
 
             event.preventDefault();
             this.stopTimers();
-            console.log("button Back on Round screen");
             this.toggleShowHide();
             this.parent.parentScreen.toggleShowHide();
         })
@@ -49,14 +47,12 @@ export default class Round extends ScreenBase {
 
             event.preventDefault();
             this.stopTimers();
-            console.log("button Home");
             this.toggleShowHide();
             MainScreen.toggleShowHide();
         })
     }
 
     getGameType(category){
-        console.log("getGameType, category type = ", category.type);
 
         if (category.type == TYPES.painters){
             return new PaintersGameRound();
@@ -86,10 +82,8 @@ export default class Round extends ScreenBase {
 
         let block = this.clearGameBlockAndReturn();
         let currentImage = this.getCurrentPicture();
-        console.log("renderGame = ", block);
 
         await this.type.renderGame(block, currentImage);
-        console.log("renderGame = ", block);
 
         let timerEl = document.querySelector('.timer');
 
@@ -153,7 +147,6 @@ export default class Round extends ScreenBase {
     
 
     processAnswer(){
-        console.log("current response is ", this.getCurrentPicture().author);
         this.playAnswerSound();
         this.renderAnsweredCircle();
         let pCallback = this.popupCallback.bind(this);
@@ -162,7 +155,6 @@ export default class Round extends ScreenBase {
     
 
     finishRound(){
-        console.log("round pictures", this.pictures);
         this.saveScore();
         this.showRoundResults();        
     }

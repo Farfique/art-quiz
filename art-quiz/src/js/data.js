@@ -10,7 +10,7 @@ class Data {
     }
 
     async init(){
-        let result = await fetch('/assets/json/images.json');
+        let result = await fetch('assets/json/images.json');
         let info = await result.json();
         this.images.push(...info.images);
         return this.images;
@@ -59,7 +59,7 @@ class Data {
     }
 
     getLinkToSquareImage(imageNum){        
-        return `/assets/images/img/${imageNum}.jpg`;
+        return `assets/images/img/${imageNum}.jpg`;
     }
 }
 

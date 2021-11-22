@@ -13,14 +13,14 @@ class Popup {
     show(imageObj, btnTitle, btnCallback){
         let popupIcon  = document.querySelector('.popup-icon');
         if (imageObj.correct){
-            popupIcon.src = `/assets/svg/correct.svg`;
+            popupIcon.src = `assets/svg/correct.svg`;
         }
         else {
-            popupIcon.src = `/assets/svg/wrong.svg`;
+            popupIcon.src = `assets/svg/wrong.svg`;
         }
 
         let img = new Image();
-        img.src = `/assets/images/full/${imageObj.imageNum}full.jpg`;
+        img.src = `assets/images/full/${imageObj.imageNum}full.jpg`;
         img.onload = () => {
             document.querySelector('.popup-image').src = img.src;
             document.querySelector('.popup-author').innerText = imageObj.author;

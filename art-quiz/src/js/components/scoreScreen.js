@@ -19,9 +19,6 @@ export default class ScoreScreen extends ScreenBase{
 
         await this.renderPreviews(scoreContainer);
 
-        console.log("scoreContainer = ", scoreContainer);
-
-
         this.toggleShowHide();
     }
 
@@ -32,7 +29,6 @@ export default class ScoreScreen extends ScreenBase{
 
             event.preventDefault();
 
-            console.log("button Back on Round screen");
             this.toggleShowHide();
             this.parentScreen.toggleShowHide();
         })
@@ -63,7 +59,6 @@ export default class ScoreScreen extends ScreenBase{
                     picture.src = img.src;
                     picture.alt = 'preview';
                     divEl.append(picture);
-                    //block.append(divEl);
                     resolve(divEl);
                 }
             });            

@@ -21,10 +21,8 @@ export default class Category {
 
         if (this.played){
             this.pictures = JSON.parse(retrieveFromLocalStorage(this.getPicturesArrayLocalStorageString));
-            console.log("this.pictures after localStorage");
         }
         if (this.pictures.length == 0){
-            console.log("no pictures");
             for (let i = indexStart; i < indexStart + questionsNum; i++){
                 let image = Object.assign({}, allImages[i]);
                 this.pictures.push(image);
@@ -32,7 +30,6 @@ export default class Category {
         }
         
         this.score = this.getScore();
-        console.log("category type = ", this.type, ", category number = ", this.number, ", category image 1 = ", this.pictures[0], ", length = ", this.pictures.length);
         await this.renderCat();
     }
 
@@ -145,7 +142,6 @@ export default class Category {
 
     saveScore(arrayOfPictures){
         this.pictures = cloneArrayOfObjects(arrayOfPictures);
-        console.log("category pictures after save: ", this.pictures);
         this.score = this.getScore();
         this.played = true;
         saveToLocalStorage(this.getPlayedLocalStorageString, 'true');

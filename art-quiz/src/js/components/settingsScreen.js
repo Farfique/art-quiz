@@ -66,7 +66,6 @@ class SettingsScreen extends ScreenBase {
 
             event.preventDefault();
 
-            console.log("button Back on Settings screen");
             this.toggleShowHide();
             MainScreen.toggleShowHide();
         })
@@ -76,7 +75,6 @@ class SettingsScreen extends ScreenBase {
         let soundSwitcher = this.element.querySelector('.switch-sound'); //label
         soundSwitcher.querySelector('input').checked = this.sound;
         soundSwitcher.addEventListener('change', () => {
-            console.log("sound setting has changed, new value = ", soundSwitcher.querySelector('input').checked);
             this.sound = soundSwitcher.querySelector('input').checked;
             saveToLocalStorage(this.soundKey, this.sound);
         })
@@ -86,7 +84,6 @@ class SettingsScreen extends ScreenBase {
         this.toggleShowHideNumberContainer();
 
         timerSwitcher.addEventListener('change', () => {
-            console.log("timer setting has changed, new value = ", timerSwitcher.querySelector('input').checked);
             this.timer = timerSwitcher.querySelector('input').checked;
             saveToLocalStorage(this.timerKey, this.timer);
             this.toggleShowHideNumberContainer();
@@ -114,7 +111,6 @@ class SettingsScreen extends ScreenBase {
 
         timerInput.addEventListener('change', () => {
             this.timeAmount = +timerInput.value;
-            console.log("timerAmout = ", this.timeAmount)
             saveToLocalStorage(this.timeAmountKey, this.timeAmount);            
         });
 
@@ -131,7 +127,6 @@ class SettingsScreen extends ScreenBase {
     }
 
     async loadSounds(){
-        console.log("load sounds");
         this.winSound = await this.loadSound('win');
         this.loseSound = await this.loadSound('lose');
         this.finishSound = await this.loadSound('finish');
@@ -141,8 +136,7 @@ class SettingsScreen extends ScreenBase {
     async loadSound(fileName){
         return new Promise((resolve, reject) => {
             let prop = new Audio();
-            prop.src = `/assets/sound/${fileName}.wav`;
-            console.log("prop = ", prop);
+            prop.src = `assets/sound/${fileName}.wav`;
             prop.addEventListener('canplaythrough', () => {
                 resolve(prop);
             });

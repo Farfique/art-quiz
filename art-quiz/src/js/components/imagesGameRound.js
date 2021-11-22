@@ -17,9 +17,7 @@ export default class ImagesGameRound {
     
     
             let allOptions = [currentImage.imageNum, ...Data.getThreeRandomImageNums(currentImage.author)];
-            console.log("pictures options before shuffle = ", allOptions);
             shuffle(allOptions);
-            console.log("pictures options after shuffle = ", allOptions);
     
             allOptions.forEach(async (imageNum) => {
                 optionsBlock.append(await this.createOptionFromImage(imageNum, currentImage));
@@ -45,8 +43,6 @@ export default class ImagesGameRound {
                 el.style.backgroundImage = `url(${img.src})`;
                 el.classList.add('option-image', 'button-card');
                 el.addEventListener('click', () => {
-                    console.log(`button with imageNum ${imageNum} was clicked`);
-
 
                     currentImage.correct = (imageNum == currentImage.imageNum);
 

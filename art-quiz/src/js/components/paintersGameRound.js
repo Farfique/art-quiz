@@ -33,7 +33,6 @@ export default class PaintersGameRound {
                 let allOptions = [currentImage.author, ...Data.getThreeRandomAuthors(currentImage.author)];
                 
                 shuffle(allOptions);
-                console.log("allOptions after shuffle = ", allOptions);
         
                 allOptions.forEach((option) => {
                     optionsBlock.append(this.createOptionFromPainter(option, currentImage));
@@ -41,7 +40,6 @@ export default class PaintersGameRound {
         
         
                 block.append(optionsBlock);
-                console.log("renderGame = ", block);
     
                 resolve();    
             }
@@ -55,7 +53,6 @@ export default class PaintersGameRound {
         el.classList.add('option-painter',  'button-card');
         el.innerText = author;
         el.addEventListener('click', () => {
-            console.log(`button with painter ${author} was clicked`);
 
             currentImage.correct = (author == currentImage.author);
 
